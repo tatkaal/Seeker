@@ -1,4 +1,3 @@
-# core/text_processor.py
 import spacy
 import spacy.cli
 from nltk.corpus import stopwords
@@ -7,11 +6,10 @@ from nltk.tokenize import word_tokenize
 from collections import Counter
 import nltk
 
-# send spaCy to GPU
+
 spacy.require_gpu()
 
 DEFAULT_SPACY_MODEL = "en_core_web_trf"
-# DEFAULT_SPACY_MODEL = "en_core_web_lg"
 
 class TextProcessor:
     def __init__(self):
@@ -33,8 +31,10 @@ class TextProcessor:
         doc = self.nlp_spacy(text.lower())
         out=[]
         for tok in doc:
-            if tok.is_punct or tok.is_space: continue
-            if remove_stopwords and tok.text in self.stop_words: continue
+            if tok.is_punct or tok.is_space:
+                continue
+            if remove_stopwords and tok.text in self.stop_words:
+                continue
             out.append(tok.lemma_ if lemmatize else tok.text)
         return " ".join(out)
 

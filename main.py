@@ -12,34 +12,23 @@ import seaborn as sns
 from wordcloud import WordCloud
 
 # NLP Libraries
-import nltk # Ensure you have downloaded necessary NLTK data: nltk.download('punkt'), nltk.download('stopwords'), nltk.download('averaged_perceptron_tagger'), nltk.download('wordnet')
+import nltk
 from nltk.tokenize import word_tokenize, sent_tokenize
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from bs4 import BeautifulSoup
-import spacy # python -m spacy download en_core_web_lg (for better performance)
-spacy.require_gpu()  # Use GPU if available for spaCy
+import spacy
+spacy.require_gpu()
 
 # Machine Learning & Embeddings
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 
-#load dotenv for sensitive keys for loading openai api key
-# Environment Variables
 from dotenv import load_dotenv
-load_dotenv()  # Load environment variables from .env file
-# Uncomment below if you want to use the OpenAI API key from environment variables
-openai_key = os.getenv("OPENAI_API_KEY")  # Ensure you have set this in your .env file
+load_dotenv()
+openai_key = os.getenv("OPENAI_API_KEY")
 
-# For semantic search, sentence-transformers is excellent:
-# from sentence_transformers import SentenceTransformer, util
-
-# LLM Integrations
 import openai
-
-# Graph Database (Conceptual)
-# import networkx as nx # For local simulation of knowledge graph
-# from neo4j import GraphDatabase # If using Neo4j
 
 #Local imports for modular components
 from core.data_loader import DataLoader
@@ -53,26 +42,24 @@ from evaluation.performance_metrics import Evaluator
 from advertiser_tools.real_time_analyzer import RealTimeAdAnalyzer
 from real_time_processing.new_ad_processor import NewAdProcessor
 from advanced_features.advanced_features import AdvancedFeatures
-from core.html_parser import HTMLParser # Custom HTML parser for cleaning job ad content
-from core.text_processor import TextProcessor # Custom text processing utilities
+from core.html_parser import HTMLParser
+from core.text_processor import TextProcessor
 
-# from advanced_features.knowledge_graph import KnowledgeGraph # If using Neo4j or NetworkX for KG
-# from advertiser_tools.hyper_personalized_feedback import HyperPersonalizedFeedback # If using advanced feedback features
-# from advertiser_tools.market_insights import MarketInsights # If using market insights features
-# from advertiser_tools.semantic_search import SemanticSearch # If using semantic search features
-# from advertiser_tools.style_tone_suggestions import StyleToneSuggestions # If using style/tone suggestions
-# from advertiser_tools.conciseness_checker import ConcisenessChecker # If using conciseness checker features
-# from advertiser_tools.responsibility_clarity_checker import ResponsibilityClarityChecker # If using responsibility clarity checker features
-# from advertiser_tools.skill_suggester import SkillSuggester # If using skill suggester features
-# from advertiser_tools.ad_completeness_checker import AdCompletenessChecker # If using ad completeness checker features
-# from advertiser_tools.candidate_appeal_analyzer import CandidateAppealAnalyzer # If using candidate appeal analyzer features
-# from advertiser_tools.advertiser_insights import AdvertiserInsights # If using advertiser insights features
-# from advertiser_tools.advertiser_tools import AdvertiserTools # If using a combined advertiser tools module
+# from advertiser_tools.market_insights import MarketInsights
+# from advertiser_tools.semantic_search import SemanticSearch
+# from advertiser_tools.style_tone_suggestions import StyleToneSuggestions
+# from advertiser_tools.conciseness_checker import ConcisenessChecker
+# from advertiser_tools.responsibility_clarity_checker import ResponsibilityClarityChecker
+# from advertiser_tools.skill_suggester import SkillSuggester
+# from advertiser_tools.ad_completeness_checker import AdCompletenessChecker
+# from advertiser_tools.candidate_appeal_analyzer import CandidateAppealAnalyzer
+# from advertiser_tools.advertiser_insights import AdvertiserInsights
+# from advertiser_tools.advertiser_tools import AdvertiserTools
 
 # --- Configuration ---
-DATA_FILE_PATH = "Data/original.json" # Assume this path and 50k records
+DATA_FILE_PATH = "Data/original.json"
 
-MIN_TEXT_LENGTH_FOR_ANALYSIS = 100  # Minimum length of text to consider for analysis
+MIN_TEXT_LENGTH_FOR_ANALYSIS = 100
 
 # Download NLTK resources if not already present
 try:
@@ -116,19 +103,19 @@ if __name__ == "__main__":
     llm_integrator_inst = LLMIntegrator(openai_api_key=openai_key)
 
     # --- EDA ---
-    # To run EDA, uncomment:
-    eda_runner = JobAdEDA(full_df.head(1000), text_processor_inst) # Use a large sample for EDA if 50k is too slow for interactive visuals
-    eda_runner.run_full_eda()
-    print(f"EDA took: {datetime.now() - start_time}")
+    # # To run EDA, uncomment:
+    # eda_runner = JobAdEDA(full_df.head(1000), text_processor_inst) # Use a large sample for EDA if 50k is too slow for interactive visuals
+    # eda_runner.run_full_eda()
+    # print(f"EDA took: {datetime.now() - start_time}")
 
-    # # --- EDA v2 ---
-    # cfg = EDAConfig()
-    # eda_v2_runner = JobAdEDAAdvanced(full_df, cfg)
-    # eda_v2_runner.run_all()
-    # print(f"EDA v2 took: {datetime.now() - start_time}")
+    # --- EDA v2 ---
+    cfg = EDAConfig()
+    eda_v2_runner = JobAdEDAAdvanced(full_df, cfg)
+    eda_v2_runner.run_all()
+    print(f"EDA v2 took: {datetime.now() - start_time}")
 
     import sys
-    sys.exit(0)  # Exit after EDA to avoid running the rest of the script in this dem
+    sys.exit(0)
 
     # --- Annotation Pipeline ---
     print("\n--- Setting up Annotation Pipeline ---")

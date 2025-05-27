@@ -1,6 +1,7 @@
 from core.annotation_pipeline import AnnotationEngine
 from core.html_parser import HTMLParser
-MIN_TEXT_LENGTH_FOR_ANALYSIS = 100  # Minimum length of text to consider for analysis
+
+MIN_TEXT_LENGTH_FOR_ANALYSIS = 100
 
 # --- 8. Real-time Processing of New Postings (Conceptual Backend) ---
 class NewAdProcessor:

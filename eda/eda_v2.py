@@ -109,7 +109,7 @@ class JobAdEDAAdvanced:
         print("Creating spaCy docs on GPU …")
         pipe = self.nlp.pipe(
             content_clean.tolist(),
-            batch_size=64,
+            batch_size=256,
             n_process=1  # GPU is single process
         )
         tokens = list(_spacy_pool(pipe))
