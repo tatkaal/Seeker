@@ -55,6 +55,7 @@ coverage.xml
 .vscode/
 
 Data Scientist Case study (2025 CQ).docx
+cleaned_content.parquet
 
 # Environments
 .venv/
