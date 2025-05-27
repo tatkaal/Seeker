@@ -18,6 +18,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 from bs4 import BeautifulSoup
 import spacy # python -m spacy download en_core_web_lg (for better performance)
+spacy.require_gpu()  # Use GPU if available for spaCy
 
 # Machine Learning & Embeddings
 from sklearn.model_selection import train_test_split
@@ -116,7 +117,7 @@ if __name__ == "__main__":
 
     # --- EDA ---
     # To run EDA, uncomment:
-    eda_runner = JobAdEDA(full_df, text_processor_inst) # Use a large sample for EDA if 50k is too slow for interactive visuals
+    eda_runner = JobAdEDA(full_df.head(1000), text_processor_inst) # Use a large sample for EDA if 50k is too slow for interactive visuals
     eda_runner.run_full_eda()
     print(f"EDA took: {datetime.now() - start_time}")
 

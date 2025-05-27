@@ -2,6 +2,10 @@
 
 > **Seeker**: The next-generation, AI-powered platform for deep analysis, annotation, and real-time feedback on massive job ad datasets. Built for data scientists, recruiters, and HR innovators.
 
+<div style="text-align: center;">
+  <img src="eda_outputs/processed_content_wordcloud.png" alt="content wordcloud" width="600" />
+</div>
+
 ---
 
 ## 🚀 Project Overview
@@ -82,14 +86,6 @@ Seeker/
 │   └── performance_metrics.py     # Annotation evaluation
 └── eda_outputs/                   # EDA plots, CSVs, word clouds
 ```
-
----
-
-## 📊 Example Visualizations
-
-- ![Word Cloud Example](https://imgur.com/6Qw1QwB.png)
-- ![Topic Model Bar Chart](https://imgur.com/7Qw1QwC.png)
-- ![Skill Frequency Table](https://imgur.com/8Qw1QwD.png)
 
 ---
 

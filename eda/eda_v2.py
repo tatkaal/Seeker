@@ -19,6 +19,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 import spacy
+spacy.require_gpu()  # Ensure spaCy uses GPU if available
 from matplotlib.ticker import MaxNLocator
 from sklearn.cluster import KMeans
 from sklearn.decomposition import LatentDirichletAllocation, NMF
